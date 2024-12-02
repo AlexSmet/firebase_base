@@ -34,13 +34,10 @@ flutter pub get):
   firebase_base:
     git:
       url: https://github.com/AlexSeednov/firebase_base
-
-
-  # https://pub.dev/packages/firebase_core
-  firebase_core: ^3.5.0
 ```
 
-Now just call `FirebaseBase -> prepare` on application launching to initialize all necessary data.
+Now just call `FirebaseBase -> prepare` on application launching to initialize 
+all necessary data.
 
 ```dart
 await FirebaseBase.prepare(name: applicationName);
@@ -51,9 +48,27 @@ All four services are **Singleton** and available via `GetIt`.
 
 ## Firebase Core
 
+Based on [firebase_core](https://pub.dev/packages/firebase_core).
+
+All necessary data will be initiated by using `FirebaseBase -> prepare`. 
+But if you want to set custom Firebase project options, you can send an 
+`FirebaseOptions` in `prepare` function. Do not forget to add 
+`firebase_core` package in `pubspec.yaml`
+
+```yaml
+  # https://pub.dev/packages/firebase_core
+  firebase_core: ^3.5.0
+```
+
 ## Firebase Crashlytics
 
+Based on [firebase_crashlytics](https://pub.dev/packages/firebase_crashlytics).
+
+All necessary data will be initiated by using `FirebaseBase -> prepare`. 
+
 ## Firebase Cloud Messaging
+
+Based on [firebase_messaging](https://pub.dev/packages/firebase_messaging).
 
 Messages have different behaviour depends on application state and OS.
 Application state can be:
@@ -73,17 +88,16 @@ In **Foreground** pushes will be shown after some preparations:
 but sometimes it doesn't work.. So it's better to use local notifications via
 [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
 
-* On **iOS**, you can update the presentation options for the application via FirebaseMessaging -> setForegroundNotificationPresentationOptions
+* On **iOS**, you can update the presentation options for the application via 
+`FirebaseMessaging -> setForegroundNotificationPresentationOptions`
 
 Details in [Firebase docs](https://firebase.google.com/docs/cloud-messaging/flutter/receive)
 
 Sheme with common information [here](https://user-images.githubusercontent.com/40064496/197368144-7bfcee7e-644a-4bdc-80f1-b4d38c2eaaff.png)
 
-TODO
-
 FCM Device token available via **FirebaseMessagingService->token**.
 
-Example
+Example:
 
 ```dart
 getIt<FirebaseMessagingService>().token;
@@ -96,7 +110,24 @@ Payload - `Map<String, dynamic>`
 Example:
 
 ```dart
-// TODO
+///
+StreamSubscription<Map<String, dynamic>>? _subscription;
+
+///
+void prepare() {
+    _subscription =
+        getIt<FirebaseMessagingService>().pushSubject.listen(_onData);
+}
+
+///
+void dispose() {
+    _subscription?.cancel();
+}
+
+///
+void _onData(Map<String, dynamic> payload) {
+    /// Do some stuff here
+}
 ```
 
 **Important** do not forget to ask user notifications permission via
@@ -113,6 +144,11 @@ It's better for UX to call in once on user Authorization / Registration only.
 
 ## Local notifications
 
-// в app/src/main/res/drawable - notification.png
-  // и в app/src/main/res/drawable-v21 - notification.png
+Based on [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+
+Used only on **Android** to show push notifications, got in **Foreground** 
+application state.
+
+Do not forget to add castom Application monochrome icon `notification.png` in
+`app/src/main/res/drawable` and `app/src/main/res/drawable-v21`
 

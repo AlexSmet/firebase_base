@@ -20,6 +20,40 @@ with
 
 TODO: 
 
+All four services are **Singleton** and available via **GetIt**.
+
+FCM Device token available via **FirebaseMessagingService->token**.
+
+Example
+
+```dart
+getIt<FirebaseMessagingService>().token;
+```
+
+To get data from Push's payload you need to listen `pushSubject` stream. 
+On listening this stream will return previous payload if it was.
+Payload - `Map<String, dynamic>`
+
+Example:
+
+```dart
+// TODO
+```
+
+// в app/src/main/res/drawable - notification.png
+  // и в app/src/main/res/drawable-v21 - notification.png
+
+**Important** do not forget to ask user notifications permission via
+`FirebaseMessagingService->requestPermission`.
+
+Example
+
+```dart
+final status = await getIt<FirebaseMessagingService>().requestPermission();
+```
+
+It's better for UX to call in once on user Authorization / Registration only.
+
 ## Usage
 
 TODO: 

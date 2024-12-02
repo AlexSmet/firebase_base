@@ -18,9 +18,68 @@ with
 
 ## Features
 
-TODO: 
+For now includes:
+* [Firebase Core](#firebase-core)
+* [Firebase Crashlytics](#firebase-crashlytics)
+* [Firebase Cloud Messaging](#firebase-cloud-messaging)
+* [Local notifications](#local-notifications)
 
-All four services are **Singleton** and available via **GetIt**.
+## Usage
+
+Add a line like this to your package's pubspec.yaml (and run an implicit 
+flutter pub get):
+
+```yaml
+  # https://github.com/AlexSeednov/firebase_base
+  firebase_base:
+    git:
+      url: https://github.com/AlexSeednov/firebase_base
+
+
+  # https://pub.dev/packages/firebase_core
+  firebase_core: ^3.5.0
+```
+
+Now just call `FirebaseBase -> prepare` on application launching to initialize all necessary data.
+
+```dart
+await FirebaseBase.prepare(name: applicationName);
+```
+where `applicationName` is Android application name for system notification setting.
+
+All four services are **Singleton** and available via `GetIt`.
+
+## Firebase Core
+
+## Firebase Crashlytics
+
+## Firebase Cloud Messaging
+
+Messages have different behaviour depends on application state and OS.
+Application state can be:
+
+* **Foreground** - When the application is open, in view and in use
+
+* **Background** - When the application is open, but in the background 
+(minimized). This typically occurs when the user has pressed the "home" 
+button on the device, has switched to another app using the app switcher, 
+or has the application open in a different tab (web)
+
+* **Terminated** - When the device is locked or the application is not running
+
+In **Foreground** pushes will be shown after some preparations:
+
+* On **Android**, you must create a "High Priority" notification channel,
+but sometimes it doesn't work.. So it's better to use local notifications via
+[flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+
+* On **iOS**, you can update the presentation options for the application via FirebaseMessaging -> setForegroundNotificationPresentationOptions
+
+Details in [Firebase docs](https://firebase.google.com/docs/cloud-messaging/flutter/receive)
+
+Sheme with common information [here](https://user-images.githubusercontent.com/40064496/197368144-7bfcee7e-644a-4bdc-80f1-b4d38c2eaaff.png)
+
+TODO
 
 FCM Device token available via **FirebaseMessagingService->token**.
 
@@ -40,9 +99,6 @@ Example:
 // TODO
 ```
 
-// в app/src/main/res/drawable - notification.png
-  // и в app/src/main/res/drawable-v21 - notification.png
-
 **Important** do not forget to ask user notifications permission via
 `FirebaseMessagingService->requestPermission`.
 
@@ -54,6 +110,9 @@ final status = await getIt<FirebaseMessagingService>().requestPermission();
 
 It's better for UX to call in once on user Authorization / Registration only.
 
-## Usage
 
-TODO: 
+## Local notifications
+
+// в app/src/main/res/drawable - notification.png
+  // и в app/src/main/res/drawable-v21 - notification.png
+

@@ -40,9 +40,6 @@ final class FirebaseMessagingService {
   /// Name for logging
   static const String _logName = 'Firebase messaging';
 
-  ///
-  static const String _payloadField = 'deepLink';
-
   /// Firebase unique token for current device
   String _token = '';
 
@@ -53,7 +50,7 @@ final class FirebaseMessagingService {
   late FirebaseMessaging? _messaging;
 
   /// Stream for listening route from push
-  final pushSubject = BehaviorSubject<String>();
+  final pushSubject = BehaviorSubject<Map<String, dynamic>>();
 
   /// Initialization of all necessary data
   Future<bool> prepare({required String name}) async {
@@ -168,32 +165,15 @@ final class FirebaseMessagingService {
   ///
   void _handleMessage(PushEntity pushEntity) {
     /// Check push's `data` field and try to get useful information from there
-    final Map<String, dynamic>? data = pushEntity.data;
+    final Map<String, dynamic>? payload = pushEntity.data;
 
-    if (data?.isEmpty ?? true) {
+    if (payload?.isEmpty ?? true) {
       /// There is nothing to get
       logInfo(info: 'Push without payload');
       return;
     }
 
-    if (!data!.containsKey(_payloadField)) {
-      /// Have something, but we can not work with it
-      logInfo(info: 'Push with wrong payload: $data');
-      return;
-    }
-
-    /// Have something useful, try to parse it
-    final dynamic payload = data[_payloadField];
-
-    if (payload is! String) {
-      /// Something wrong
-      logInfo(info: 'Push with non-string payload: $data');
-      return;
-    }
-
-    /// Got string, try to push it
-    logInfo(info: 'Push with payload: $payload');
-    pushSubject.add(payload);
+    pushSubject.add(payload!);
   }
 
   /// Token changed listener

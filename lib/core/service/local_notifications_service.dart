@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:application_base/core/service/logger_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_base/core/entity/push_entity.dart';
 
@@ -37,8 +38,10 @@ final class LocalNotificationsService {
     );
 
     await _instance.setListeners(
-      onActionReceivedMethod: (ReceivedAction data) async =>
-          handleMessage(data.body),
+      onActionReceivedMethod: (ReceivedAction data) async {
+        logInfo(info: '!!! onActionReceivedMethod');
+        handleMessage(data.body);
+      },
     );
   }
 

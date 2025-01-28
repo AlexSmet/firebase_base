@@ -156,7 +156,11 @@ final class FirebaseMessagingService {
 
   /// User pressed on push and application opened from Foreground state
   void _handleForegroundMessage(String? payload) {
-    if (payload?.isEmpty ?? true) return;
+    logInfo(info: '!!! _handleForegroundMessage');
+    if (payload?.isEmpty ?? true) {
+      logInfo(info: 'Foreground push without payload');
+      return;
+    }
 
     /// Create data from payload
     final pushEntity = PushEntity.fromString(payload!);

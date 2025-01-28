@@ -5,7 +5,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_base/core/entity/push_entity.dart';
 
 ///
-typedef HandleMessage = void Function(String? message);
+typedef HandleMessage = void Function(Map<String, String?>? message);
 
 /// Singleton
 ///
@@ -73,6 +73,6 @@ final class LocalNotificationsService {
     ReceivedAction data,
   ) async {
     logInfo(info: '!!! onActionReceivedMethod');
-    _handleMessage?.call(data.body);
+    _handleMessage?.call(data.payload);
   }
 }

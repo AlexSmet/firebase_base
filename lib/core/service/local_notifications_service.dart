@@ -35,6 +35,11 @@ final class LocalNotificationsService {
       null,
       [_androidLocalChannel],
     );
+
+    await _instance.setListeners(
+      onActionReceivedMethod: (ReceivedAction data) async =>
+          handleMessage(data.body),
+    );
   }
 
   /// Show local message

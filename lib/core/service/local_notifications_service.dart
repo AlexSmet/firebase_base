@@ -17,11 +17,16 @@ final class LocalNotificationsService {
   /// Local notifications instance
   final _instance = AwesomeNotifications();
 
+  ///
+  static HandleMessage? _handleMessage;
+
   /// **name** - Android application name for system notification settings
   Future<void> prepare({
     required HandleMessage handleMessage,
     required String name,
   }) async {
+    _handleMessage = handleMessage;
+
     /// Prepare settings
     _androidLocalChannel = NotificationChannel(
       channelGroupKey: '$name-notifications-group',
@@ -38,10 +43,7 @@ final class LocalNotificationsService {
     );
 
     await _instance.setListeners(
-      onActionReceivedMethod: (ReceivedAction data) async {
-        logInfo(info: '!!! onActionReceivedMethod');
-        handleMessage(data.body);
-      },
+      onActionReceivedMethod: _onActionReceivedMethod,
     );
   }
 
@@ -57,4 +59,20 @@ final class LocalNotificationsService {
           largeIcon: picture,
         ),
       );
+
+  /// Use this method to detect when the user taps on a notification
+  /// or action button
+  ///
+  /// Must be a static
+  ///
+  /// Need to use @pragma("vm:entry-point") in each static method to identify
+  /// to the Flutter engine that the dart address will be called from native
+  /// and should be preserved
+  @pragma('vm:entry-point')
+  static Future<void> _onActionReceivedMethod(
+    ReceivedAction data,
+  ) async {
+    logInfo(info: '!!! onActionReceivedMethod');
+    _handleMessage?.call(data.body);
+  }
 }

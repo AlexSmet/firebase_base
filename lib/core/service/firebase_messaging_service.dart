@@ -145,11 +145,6 @@ final class FirebaseMessagingService {
     /// Create data from message
     final pushEntity = PushEntity.fromMessage(message);
 
-    logInfo(info: message.toString());
-
-    logInfo(info: "==================");
-    logInfo(info: message.notification?.android?.imageUrl ?? '');
-
     logInfo(info: 'Got push "${pushEntity.title}" in Foreground state');
 
     ///

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_base/core/entity/push_entity.dart';
+import 'package:flutter/material.dart';
 
 ///
 typedef HandleMessage = void Function(String? message);
@@ -46,8 +47,13 @@ final class LocalNotificationsService {
           title: pushEntity.title,
           body: pushEntity.body,
           payload: pushEntity.toMap(),
+          icon:
+              'https://www.gstatic.com/mobilesdk/240501_mobilesdk/firebase_28dp.png',
+          largeIcon:
+              'https://www.gstatic.com/mobilesdk/240501_mobilesdk/firebase_28dp.png',
           bigPicture:
-              'asset://https://www.gstatic.com/mobilesdk/240501_mobilesdk/firebase_28dp.png',
+              'https://www.gstatic.com/mobilesdk/240501_mobilesdk/firebase_28dp.png',
+          backgroundColor: Colors.red,
         ),
       );
 }

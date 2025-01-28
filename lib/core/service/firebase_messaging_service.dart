@@ -27,8 +27,7 @@ import 'package:rxdart/rxdart.dart';
 ///
 /// * On **Android**, you must create a "High Priority" notification channel,
 /// but sometimes it doesn't work..
-/// So it's better to use local notifications via
-/// [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+/// So it's better to use local notifications via special package
 ///
 /// * On **iOS**, you can update the presentation options for the application
 /// via FirebaseMessaging -> setForegroundNotificationPresentationOptions
@@ -67,7 +66,7 @@ final class FirebaseMessagingService {
         );
       } else if (isAndroid) {
         /// Special behaviour for Android only - need to show local
-        /// messages via flutter_local_notifications package in foreground
+        /// messages via special package in foreground
         await getIt<LocalNotificationsService>().prepare(
           handleMessage: _handleForegroundMessage,
           name: name,

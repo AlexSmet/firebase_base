@@ -49,9 +49,6 @@ final class LocalNotificationsService {
           payload: pushEntity.toMap(),
           largeIcon:
               'https://www.gstatic.com/mobilesdk/240501_mobilesdk/firebase_28dp.png',
-          bigPicture:
-              'https://www.gstatic.com/mobilesdk/240501_mobilesdk/firebase_28dp.png',
-          backgroundColor: Colors.red,
         ),
       );
 }

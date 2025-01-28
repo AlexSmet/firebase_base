@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_base/core/entity/push_entity.dart';
-import 'package:flutter/material.dart';
 
 ///
 typedef HandleMessage = void Function(String? message);

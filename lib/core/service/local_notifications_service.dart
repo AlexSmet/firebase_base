@@ -47,8 +47,6 @@ final class LocalNotificationsService {
           title: pushEntity.title,
           body: pushEntity.body,
           payload: pushEntity.toMap(),
-          icon:
-              'https://www.gstatic.com/mobilesdk/240501_mobilesdk/firebase_28dp.png',
           largeIcon:
               'https://www.gstatic.com/mobilesdk/240501_mobilesdk/firebase_28dp.png',
           bigPicture:

@@ -43,11 +43,11 @@ final class LocalNotificationsService {
         content: NotificationContent(
           id: pushEntity.hashCode,
           channelKey: _androidLocalChannel.channelKey!,
-          title: 'Tesssta',
+          title: pushEntity.title,
           body: pushEntity.body,
           payload: pushEntity.toMap(),
           bigPicture:
-              'https://www.gstatic.com/mobilesdk/240501_mobilesdk/firebase_28dp.png',
+              'asset://https://www.gstatic.com/mobilesdk/240501_mobilesdk/firebase_28dp.png',
         ),
       );
 }

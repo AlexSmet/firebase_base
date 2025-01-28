@@ -148,12 +148,15 @@ final class FirebaseMessagingService {
     logInfo(info: message.toString());
 
     logInfo(info: "==================");
-    logInfo(info: message.data.toString());
+    logInfo(info: message.notification?.android?.imageUrl ?? '');
 
     logInfo(info: 'Got push "${pushEntity.title}" in Foreground state');
 
     ///
-    getIt<LocalNotificationsService>().show(pushEntity: pushEntity);
+    getIt<LocalNotificationsService>().show(
+      pushEntity: pushEntity,
+      picture: message.notification?.android?.imageUrl,
+    );
   }
 
   /// User pressed on push and application opened from Foreground state

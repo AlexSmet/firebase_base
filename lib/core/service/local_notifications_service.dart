@@ -38,7 +38,7 @@ final class LocalNotificationsService {
   }
 
   /// Show local message
-  Future<bool> show({required PushEntity pushEntity}) =>
+  Future<bool> show({required PushEntity pushEntity, String? picture}) =>
       _instance.createNotification(
         content: NotificationContent(
           id: pushEntity.hashCode,
@@ -46,8 +46,7 @@ final class LocalNotificationsService {
           title: pushEntity.title,
           body: pushEntity.body,
           payload: pushEntity.toMap(),
-          largeIcon:
-              'https://www.gstatic.com/mobilesdk/240501_mobilesdk/firebase_28dp.png',
+          largeIcon: picture,
         ),
       );
 }

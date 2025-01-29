@@ -156,7 +156,6 @@ final class FirebaseMessagingService {
 
   /// User pressed on push and application opened from Foreground state
   void _handleForegroundMessage(Map<String, String?>? payload) {
-    logInfo(info: '!!! _handleForegroundMessage: $payload');
     if (payload?.isEmpty ?? true) {
       logInfo(info: 'Foreground push without payload');
       return;

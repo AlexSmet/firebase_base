@@ -163,7 +163,7 @@ final class FirebaseMessagingService {
     }
 
     /// Create data from payload
-    final pushEntity = PushEntity()..data = payload;
+    final pushEntity = PushEntity.fromJson(payload!);
 
     /// And handle it as a common push message
     _handleMessage(pushEntity);

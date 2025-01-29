@@ -144,11 +144,10 @@ It's better for UX to call in once on user Authorization / Registration only.
 
 ## Local notifications
 
-Based on [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+Based on [awesome_notifications](https://pub.dev/packages/awesome_notifications)
 
 Used only on **Android** to show push notifications, got in **Foreground** 
 application state.
 
-Do not forget to add castom Application monochrome icon `notification.png` in
-`app/src/main/res/drawable` and `app/src/main/res/drawable-v21`
+Supports title, body and image.
 

@@ -27,8 +27,7 @@ import 'package:rxdart/rxdart.dart';
 ///
 /// * On **Android**, you must create a "High Priority" notification channel,
 /// but sometimes it doesn't work..
-/// So it's better to use local notifications via
-/// [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+/// So it's better to use local notifications via special package
 ///
 /// * On **iOS**, you can update the presentation options for the application
 /// via FirebaseMessaging -> setForegroundNotificationPresentationOptions
@@ -67,7 +66,7 @@ final class FirebaseMessagingService {
         );
       } else if (isAndroid) {
         /// Special behaviour for Android only - need to show local
-        /// messages via flutter_local_notifications package in foreground
+        /// messages via special package in foreground
         await getIt<LocalNotificationsService>().prepare(
           handleMessage: _handleForegroundMessage,
           name: name,
@@ -149,21 +148,39 @@ final class FirebaseMessagingService {
     logInfo(info: 'Got push "${pushEntity.title}" in Foreground state');
 
     ///
-    getIt<LocalNotificationsService>().show(pushEntity: pushEntity);
+    getIt<LocalNotificationsService>().show(
+      pushEntity: pushEntity,
+      picture: message.notification?.android?.imageUrl,
+    );
   }
 
   /// User pressed on push and application opened from Foreground state
   void _handleForegroundMessage(String? payload) {
-    if (payload?.isEmpty ?? true) return;
+    logInfo(info: 'Handle push in Foreground state');
 
-    /// Create data from payload
-    final pushEntity = PushEntity.fromString(payload!);
+    if (payload?.isEmpty ?? true) {
+      logInfo(info: 'Foreground push without payload');
+      return;
+    }
 
-    _handleMessage(pushEntity);
+    try {
+      /// Create data from payload
+      final pushEntity = PushEntity.fromString(payload!);
+
+      /// And handle it as a common push message
+      _handleMessage(pushEntity);
+    } catch (e) {
+      logError(
+        error: 'Foreground push with wrong payload: $payload\n'
+            'Got error $e',
+      );
+    }
   }
 
   ///
   void _handleMessage(PushEntity pushEntity) {
+    logInfo(info: 'Handle push');
+
     /// Check push's `data` field and try to get useful information from there
     final Map<String, dynamic>? payload = pushEntity.data;
 

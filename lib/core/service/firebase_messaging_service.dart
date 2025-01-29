@@ -156,6 +156,8 @@ final class FirebaseMessagingService {
 
   /// User pressed on push and application opened from Foreground state
   void _handleForegroundMessage(Map<String, String?>? payload) {
+    logInfo(info: 'Handle push in Foreground state');
+
     if (payload?.isEmpty ?? true) {
       logInfo(info: 'Foreground push without payload');
       return;
@@ -170,6 +172,8 @@ final class FirebaseMessagingService {
 
   ///
   void _handleMessage(PushEntity pushEntity) {
+    logInfo(info: 'Handle push');
+
     /// Check push's `data` field and try to get useful information from there
     final Map<String, dynamic>? payload = pushEntity.data;
 

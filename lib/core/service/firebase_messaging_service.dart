@@ -163,11 +163,18 @@ final class FirebaseMessagingService {
       return;
     }
 
-    /// Create data from payload
-    final pushEntity = PushEntity.fromJson(payload!);
+    try {
+      /// Create data from payload
+      final pushEntity = PushEntity.fromJson(payload!);
 
-    /// And handle it as a common push message
-    _handleMessage(pushEntity);
+      /// And handle it as a common push message
+      _handleMessage(pushEntity);
+    } catch (e) {
+      logError(
+        error: 'Foreground push with wrong payload: $payload\n'
+            'Got error $e',
+      );
+    }
   }
 
   ///

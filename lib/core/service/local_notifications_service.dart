@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:application_base/core/service/logger_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_base/core/entity/push_entity.dart';
 
@@ -71,8 +70,6 @@ final class LocalNotificationsService {
   @pragma('vm:entry-point')
   static Future<void> _onActionReceivedMethod(
     ReceivedAction data,
-  ) async {
-    logInfo(info: 'Push in Foreground state tapped');
-    _handleMessage?.call(data.payload);
-  }
+  ) async =>
+      _handleMessage?.call(data.payload);
 }

@@ -4,12 +4,15 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_base/core/entity/push_entity.dart';
 
 ///
-typedef HandleMessage = void Function(Map<String, String?>? message);
+typedef HandleMessage = void Function(String? message);
 
 /// Singleton
 ///
 /// Used only for Android
 final class LocalNotificationsService {
+  ///
+  static const _payloadField = 'payload';
+
   /// Channel for getting local notifications on Android
   late NotificationChannel _androidLocalChannel;
 
@@ -54,7 +57,7 @@ final class LocalNotificationsService {
           channelKey: _androidLocalChannel.channelKey!,
           title: pushEntity.title,
           body: pushEntity.body,
-          payload: pushEntity.toMap(),
+          payload: {_payloadField: pushEntity.toString()},
           largeIcon: picture,
         ),
       );
@@ -71,5 +74,5 @@ final class LocalNotificationsService {
   static Future<void> _onActionReceivedMethod(
     ReceivedAction data,
   ) async =>
-      _handleMessage?.call(data.payload);
+      _handleMessage?.call(data.payload?[_payloadField]);
 }

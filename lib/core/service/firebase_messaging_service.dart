@@ -155,7 +155,7 @@ final class FirebaseMessagingService {
   }
 
   /// User pressed on push and application opened from Foreground state
-  void _handleForegroundMessage(Map<String, String?>? payload) {
+  void _handleForegroundMessage(String? payload) {
     logInfo(info: 'Handle push in Foreground state');
 
     if (payload?.isEmpty ?? true) {
@@ -165,7 +165,7 @@ final class FirebaseMessagingService {
 
     try {
       /// Create data from payload
-      final pushEntity = PushEntity.fromJson(payload!);
+      final pushEntity = PushEntity.fromString(payload!);
 
       /// And handle it as a common push message
       _handleMessage(pushEntity);

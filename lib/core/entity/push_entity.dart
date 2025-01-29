@@ -70,23 +70,6 @@ final class PushEntity {
   /// Convert data to Json
   Map<String, dynamic> toJson() => _$PushEntityToJson(this);
 
-  /// Convert data to String map
-  Map<String, String?> toMap() {
-    final Map<String, String?> result = {};
-
-    toJson().forEach((key, value) {
-      if (value == null) {
-        result[key] = null;
-      } else if (value is String) {
-        result[key] = value;
-      } else {
-        result[key] = value.toString();
-      }
-    });
-
-    return result;
-  }
-
   /// Convert data to String in JSON format
   @override
   String toString() => json.encode(toJson());

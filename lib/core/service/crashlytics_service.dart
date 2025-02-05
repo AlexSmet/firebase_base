@@ -34,7 +34,9 @@ final class CrashlyticsService {
   /// Log error
   Future<void> _logError({required String error, StackTrace? stack}) async {
     /// Add current user ID
-    await FirebaseCrashlytics.instance.setCustomKey('User ID', loggerUserId);
+    if (loggerUserId.isNotEmpty) {
+      await FirebaseCrashlytics.instance.setCustomKey('User ID', loggerUserId);
+    }
 
     /// Event's date - current in UTC
     final String date = _dateFormat.format(DateTime.now().toUtc());

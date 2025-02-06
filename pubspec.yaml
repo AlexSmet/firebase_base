@@ -18,6 +18,8 @@ dependencies:
   application_base:
     git:
       url: https://github.com/AlexSeednov/application_base
+      # TODO(Alex): replace to 
+      #  ref: release/0.0.3
       ref: connection
 
   # https://pub.dev/packages/awesome_notifications

@@ -18,6 +18,7 @@ dependencies:
   application_base:
     git:
       url: https://github.com/AlexSeednov/application_base
+      ref: connection
 
   # https://pub.dev/packages/awesome_notifications
   # 

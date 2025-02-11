@@ -34,6 +34,7 @@ flutter pub get):
   firebase_base:
     git:
       url: https://github.com/AlexSeednov/firebase_base
+      ref: release/0.0.3
 ```
 
 Now just call `FirebaseBase -> prepare` on application launching to initialize 

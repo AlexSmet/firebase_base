@@ -24,6 +24,25 @@ For now includes:
 * [Firebase Cloud Messaging](#firebase-cloud-messaging)
 * [Local notifications](#local-notifications)
 
+## Supported platforms
+
+* Android
+* iOS
+
+All other not supported because of 
+[awesome_notifications](https://pub.dev/packages/awesome_notifications)
+
+## Requirements 
+
+Based on minimum requirements from 
+[application_base package](https://github.com/AlexSeednov/application_base)
+
+## Changelog
+
+Refer to the 
+[Changelog](https://github.com/AlexSeednov/firebase_base/blob/main/CHANGELOG.md) 
+to get all release notes
+
 ## Usage
 
 Add a line like this to your package's pubspec.yaml (and run an implicit 

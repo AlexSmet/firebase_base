@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Application Base upgraded to version 0.0.4
+
 ## 0.0.4
 
 * Dependencies update

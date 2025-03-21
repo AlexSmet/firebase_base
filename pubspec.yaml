@@ -9,8 +9,11 @@ homepage: https://github.com/AlexSeednov/firebase_base
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
-  flutter: ">=3.22.0"
+  # Flutter SDK supported versions
+  flutter: '3.29.2'
+
+  # Dart SDK supported versions
+  sdk: '>=3.7.2 <4.0.0'
 
 dependencies:
   # https://github.com/AlexSeednov/application_base
@@ -20,7 +23,7 @@ dependencies:
     git:
       url: https://github.com/AlexSeednov/application_base
       # https://github.com/AlexSeednov/application_base/blob/main/CHANGELOG.md
-      ref: release/0.0.5
+      ref: upgrade
 
   # https://pub.dev/packages/awesome_notifications
   # 
@@ -33,17 +36,17 @@ dependencies:
   # https://pub.dev/packages/firebase_core
   #
   # Not supported: Linux
-  firebase_core: ^3.11.0
+  firebase_core: ^3.12.1
 
   # https://pub.dev/packages/firebase_crashlytics
   #
   # Not supported: Linux | Web | Windows
-  firebase_crashlytics: ^4.3.2
+  firebase_crashlytics: ^4.3.4
 
   # https://pub.dev/packages/firebase_messaging
   #
   # Not supported: Linux | Windows
-  firebase_messaging: ^15.2.2
+  firebase_messaging: ^15.2.4
 
   # Base SDK
   flutter:
@@ -52,7 +55,7 @@ dependencies:
   # https://pub.dev/packages/intl
   #
   # All platform supported
-  intl: ^0.20.0
+  intl: ^0.20.2
 
   # https://pub.dev/packages/json_annotation
   #
@@ -67,7 +70,7 @@ dependencies:
 #
 dev_dependencies:
   # https://pub.dev/packages/build_runner
-  build_runner: 2.4.11
+  build_runner: 2.4.15
 
   #
   flutter_test:
@@ -76,7 +79,7 @@ dev_dependencies:
   # https://pub.dev/packages/json_serializable
   #
   # dart run build_runner build --delete-conflicting-outputs
-  json_serializable: ^6.8.0
+  json_serializable: ^6.9.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,5 +1,9 @@
 ## 0.0.6
 
+* Packages upgraded
+
+## 0.0.6
+
 * **Application Base** upgraded to version 0.0.5
 
 ## 0.0.5

@@ -1,6 +1,8 @@
-## 0.0.6
+## 0.0.7
 
-* Packages upgraded
+* Flutter upgraded to 3.24.5
+* **Application Base** upgraded to version 0.0.6
+* Dependencies update
 
 ## 0.0.6
 

@@ -1,3 +1,7 @@
+## 0.0.9
+
+* **Application Base** upgraded to version 0.0.8
+
 ## 0.0.8
 
 * **Application Base** upgraded to version 0.0.7

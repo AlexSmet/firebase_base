@@ -90,6 +90,8 @@ All necessary data will be initiated by using `FirebaseBase -> prepare`.
 
 Based on [firebase_messaging](https://pub.dev/packages/firebase_messaging).
 
+Setup Firebase instruction [here](https://firebase.google.com/docs/cloud-messaging/flutter/client)
+
 Messages have different behaviour depends on application state and OS.
 Application state can be:
 

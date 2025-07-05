@@ -1,32 +1,38 @@
+## 0.1.0
+
+* Updates **Application Base** to version 0.1.0
+* Updates minimum supported SDK version to Flutter 3.32.5/Dart 3.8.1
+* Updates all packages to actual versions
+  
 ## 0.0.9
 
-* **Application Base** upgraded to version 0.0.8
+* Updates **Application Base** to version 0.0.8
 
 ## 0.0.8
 
-* **Application Base** upgraded to version 0.0.7
+* Updates **Application Base** to version 0.0.7
 
 ## 0.0.7
 
-* Flutter upgraded to 3.24.5
-* **Application Base** upgraded to version 0.0.6
-* Dependencies update
+* Updates minimum supported SDK version to Flutter 3.24.5/Dart 3.5.4
+* Updates **Application Base** to version 0.0.6
+* Updates dependencies
 
 ## 0.0.6
 
-* **Application Base** upgraded to version 0.0.5
+* Updates **Application Base** to version 0.0.5
 
 ## 0.0.5
 
-* **Application Base** upgraded to version 0.0.4
+* Updates **Application Base** to version 0.0.4
 
 ## 0.0.4
 
-* Dependencies update
+* Updates dependencies
 
 ## 0.0.3
 
-* **Application Base** upgraded to version 0.0.2
+* Updates **Application Base** to version 0.0.2
 
 ## 0.0.2
 

@@ -1,3 +1,7 @@
+## 0.1.1
+
+* Updates **Application Base** to version 0.1.1
+
 ## 0.1.0
 
 * Updates **Application Base** to version 0.1.0

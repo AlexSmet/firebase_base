@@ -23,7 +23,7 @@ dependencies:
     git:
       url: https://github.com/AlexSeednov/application_base
       # https://github.com/AlexSeednov/application_base/blob/main/CHANGELOG.md
-      ref: release/0.1.0
+      ref: release/0.1.1
 
   # Not supported: Linux | MacOS | Web | Windows
   #

@@ -51,6 +51,9 @@ final class FirebaseMessagingService {
   /// Stream for listening route from push
   final pushSubject = BehaviorSubject<Map<String, dynamic>>();
 
+  ///
+  void Function(String)? onTokenChanged;
+
   /// Initialization of all necessary data
   Future<bool> prepare({required String name}) async {
     try {
@@ -102,7 +105,8 @@ final class FirebaseMessagingService {
   Future<AuthorizationStatus> requestPermission() async {
     if (_messaging == null) {
       logError(
-        error: 'FCM instance is null. '
+        error:
+            'FCM instance is null. '
             'Did you forget to call FirebaseMessagingService->prepare?',
       );
       return AuthorizationStatus.notDetermined;
@@ -171,7 +175,8 @@ final class FirebaseMessagingService {
       _handleMessage(pushEntity);
     } catch (e) {
       logError(
-        error: 'Foreground push with wrong payload: $payload\n'
+        error:
+            'Foreground push with wrong payload: $payload\n'
             'Got error $e',
       );
     }
@@ -196,5 +201,8 @@ final class FirebaseMessagingService {
   /// Token changed listener
   // It can not be a setter because it's using as callback
   // ignore: use_setters_to_change_properties
-  void _tokenChanged(String newToken) => _token = newToken;
+  void _tokenChanged(String newToken) {
+    _token = newToken;
+    onTokenChanged?.call(_token);
+  }
 }

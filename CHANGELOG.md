@@ -1,6 +1,7 @@
 ## 0.1.1
 
 * Updates **Application Base** to version 0.1.1
+* Added **onTokenChanged** callback to **FirebaseMessagingService**
 
 ## 0.1.0
 

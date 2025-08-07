@@ -45,6 +45,12 @@ final class FirebaseMessagingService {
   /// Get Firebase unique token for current device
   String get token => _token;
 
+  /// APNs unique token - only for iOS
+  String? _apnsToken;
+
+  /// Get APNs unique token - only for iOS
+  String? get apnsToken => _apnsToken;
+
   /// Main instance for messaging via Firebase
   late FirebaseMessaging? _messaging;
 
@@ -79,6 +85,10 @@ final class FirebaseMessagingService {
 
       /// Get unique firebase token
       _token = await _messaging!.getToken() ?? '';
+
+      if (isIOS) {
+        _apnsToken = await _messaging!.getAPNSToken();
+      }
 
       /// Any time the token refreshes, need to get it
       _messaging!.onTokenRefresh.listen(_tokenChanged);

@@ -85,6 +85,7 @@ final class FirebaseMessagingService {
 
       /// Get unique firebase token
       _token = await _messaging!.getToken() ?? '';
+      if (_token.isEmpty) logError(error: 'FCM token is empty');
 
       if (isIOS) {
         _apnsToken = await _messaging!.getAPNSToken();

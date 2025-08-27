@@ -21,7 +21,7 @@ dependencies:
   # All platform supported
   application_base:
     git:
-      url: https://github.com/AlexSeednov/application_base
+      url: https://github.com/AlexSmet/application_base
       # https://github.com/AlexSeednov/application_base/blob/main/CHANGELOG.md
       ref: release/0.1.1
 
